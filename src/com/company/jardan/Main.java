@@ -95,6 +95,7 @@ public class Main {
                 resultArray[i][j] = String.valueOf(inputArray[i-1][j-1]);
             }
         }
+
         for (int i = 1; i < resultArray.length; i++){
             for (int j = 1; j < resultArray[i].length; j++){
                 if (inputArray[i-1][j-1] < 10.0 && inputArray[i-1][j-1] > 0.0) {
@@ -162,8 +163,13 @@ public class Main {
         };
 
 
-        System.out.println("Second Matrix: ");
-        printMatrix(inputArray, xAks, yAks);
+        if (inputArray[0][0] == 1.0) {
+            System.out.println("Нет решений");
+            printMatrix(inputArray, xAks, yAks);
+        } else {
+            System.out.println("Second Matrix: ");
+            printMatrix(inputArray, xAks, yAks);
+        }
     }
 
 //    static void Result() {

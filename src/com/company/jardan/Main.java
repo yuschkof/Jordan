@@ -22,6 +22,9 @@ public class Main {
             answer = number.next();
             if (Objects.equals(answer, "y")) {
                 SecondChange();
+                if (inputArray[0][0] == 1) {
+                    temp = false;
+                }
             } else {
 //                Result();
                 temp = false;
@@ -126,7 +129,7 @@ public class Main {
         int yAks = number.nextInt();
         double aks = inputArray[xAks][yAks];
 
-        System.out.println("Resolving element: " + aks);
+        System.out.println("Разрешаюший элемент: " + aks);
         for (int i = 0; i < inputArray.length; i++) {
             for (int j = 0; j < inputArray[i].length; j++) {
                 if (i != xAks && j != yAks) {

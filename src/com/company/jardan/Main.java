@@ -3,40 +3,10 @@ package com.company.jardan;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
-
 public class Main {
     public static double[][] inputArray;
     public static String[][] resultArray;
-
-    public static void main(String[] args) {
-    Scanner number = new Scanner(System.in);
-    System.out.println("Введите размер матрицы");
-    int a = number.nextInt();
-    int b = number.nextInt();
-	CreateMatrix(a, b);
-    SecondChange();
-    String answer;
-    boolean temp = true;
-        while (temp) {
-            System.out.println("Продолжить вычисления? y=Да, f=Результат");
-            answer = number.next();
-            if (Objects.equals(answer, "y")) {
-                SecondChange();
-                if (inputArray[0][0] == 1) {
-                    temp = false;
-                }
-            } else {
-//                Result();
-                temp = false;
-            }
-        }
-    }
-
-
-    static void printMatrix (double[][] inputArray, int a, int b) {
-        resultArray[0][b+1] = "  0";
-        resultArray[a+1][0] = "x" + b;
-
+    private static void outputMatr(double[][] inputArray) {
         for (int i = 1; i < resultArray.length; i++){
             for (int j = 1; j < resultArray[i].length; j++){
                 if (inputArray[i-1][j-1] < 10.0 && inputArray[i-1][j-1] > 0.0) {
@@ -56,6 +26,45 @@ public class Main {
                 }
             }
         }
+    }
+
+    public static void main(String[] args) {
+    Scanner number = new Scanner(System.in);
+    System.out.println("Введите размер матрицы");
+    int a = number.nextInt();
+    int b = number.nextInt();
+	CreateMatrix(a, b);
+    SecondChange();
+    String answer;
+    boolean temp = true;
+        while (temp) {
+            System.out.println("Продолжить вычисления? y=Да, f=Результат");
+            answer = number.next();
+            if (Objects.equals(answer, "y")) {
+                SecondChange();
+//                if (inputArray[0][0] == 1) {
+//                    for (int i = 1; i < resultArray.length; i++){
+//                        for (int j = 1; j < resultArray[i].length; j++){
+//                            if (resultArray[i][0].equals(" 0")) {
+//
+//                            }
+//                        }
+//                    }
+//                    temp = false;
+//                }
+            } else {
+                Result();
+                temp = false;
+            }
+        }
+    }
+
+
+    static void printMatrix (double[][] inputArray, int a, int b) {
+        resultArray[0][b+1] = "  0";
+        resultArray[a+1][0] = "x" + b;
+
+        outputMatr(inputArray);
         for (int i = 1; i < resultArray.length; i++){
             for (int j = 1; j < resultArray[i].length; j++){
                 resultArray[i][b+1] = "  0";
@@ -68,7 +77,6 @@ public class Main {
                 }
             }
         }
-
         Arrays.stream(resultArray).map(Arrays::toString).forEach(System.out::println);
     }
 
@@ -99,25 +107,7 @@ public class Main {
             }
         }
 
-        for (int i = 1; i < resultArray.length; i++){
-            for (int j = 1; j < resultArray[i].length; j++){
-                if (inputArray[i-1][j-1] < 10.0 && inputArray[i-1][j-1] > 0.0) {
-                    resultArray[i][j] = "  " + inputArray[i - 1][j - 1];
-                }
-                if (inputArray[i-1][j-1] >= 10.0) {
-                    resultArray[i][j] = " " + inputArray[i - 1][j - 1];
-                }
-                if (inputArray[i-1][j-1] < 0.0 && inputArray[i-1][j-1] > -10.0) {
-                    resultArray[i][j] = " " + inputArray[i - 1][j - 1];
-                }
-                if (inputArray[i-1][j-1] <= -10.0) {
-                    resultArray[i][j] = String.valueOf(inputArray[i-1][j-1]);
-                }
-                if (inputArray[i-1][j-1] == 0.0) {
-                    resultArray[i][j] = "  " + inputArray[i - 1][j - 1];
-                }
-            }
-        }
+        outputMatr(inputArray);
         Arrays.stream(resultArray).map(Arrays::toString).forEach(System.out::println);
 
     }
@@ -166,22 +156,63 @@ public class Main {
         };
 
 
-        if (inputArray[0][0] == 1.0) {
-            System.out.println("Нет решений");
-            printMatrix(inputArray, xAks, yAks);
-        } else {
+//        if (inputArray[0][0] == 1.0) {
+//            System.out.println("Нет решений");
+//            printMatrix(inputArray, xAks, yAks);
+//        } else {
             System.out.println("Second Matrix: ");
             printMatrix(inputArray, xAks, yAks);
-        }
+//        }
     }
 
-//    static void Result() {
-//        String[][] res = new String[resultArray.length][1];
-//        for (int i = 1; i < resultArray.length; i++){
-//            for (int j = 1; j < resultArray[i].length; j++){
-//                res[i][j] = String.valueOf(resultArray[0][j] + " = " + inputArray[i][j]);
-//            }
-//        }
-//        System.out.println(Arrays.toString(res));
-//    }
+    static void Result() {
+        for (int i = 1; i < resultArray.length; i++){
+            for (int j = 1; j < resultArray[i].length; j++){
+                if (inputArray[i-1][j-1] < 10.0 && inputArray[i-1][j-1] > 0.0) {
+                    resultArray[i][j] = "" + inputArray[i - 1][j - 1];
+                }
+                if (inputArray[i-1][j-1] >= 10.0) {
+                    resultArray[i][j] = "" + inputArray[i - 1][j - 1];
+                }
+                if (inputArray[i-1][j-1] < 0.0 && inputArray[i-1][j-1] > -10.0) {
+                    resultArray[i][j] = "" + inputArray[i - 1][j - 1];
+                }
+                if (inputArray[i-1][j-1] <= -10.0) {
+                    resultArray[i][j] = String.valueOf(inputArray[i-1][j-1]);
+                }
+                if (inputArray[i-1][j-1] == 0.0) {
+                    resultArray[i][j] = "" + inputArray[i - 1][j - 1];
+                }
+            }
+        }
+        String[] res = new String[resultArray.length];
+
+        for (int i = 1; i < resultArray.length; i++){
+            for (int j = 0; j < resultArray[i].length; j++){
+                res[i-1] = resultArray[i][0] + " = ";
+            }
+        }
+        for (int i = 0; i < inputArray.length; i++){
+            if (inputArray[i][0] != 0.0) {
+                res[i] += inputArray[i][0] + " +";
+            }
+        }
+
+        for (int i = 1; i < resultArray.length; i++){
+            for (int j = 2; j < resultArray[i].length -1 ; j++){
+                if (!resultArray[0][j].equals("  0")) {
+                    if (inputArray[i-1][j-1] == 1.0) {
+                        res[i-1] += resultArray[0][j];
+                    }
+                    if (inputArray[i-1][j-1] < 0) {
+                        inputArray[i-1][j-1] *= -1;
+                        res[i-1] += inputArray[i-1][j-1] + "x" + (j-2);
+                    }
+                }
+            }
+        }
+
+        System.out.print(Arrays.toString(res));
+
+    }
 }

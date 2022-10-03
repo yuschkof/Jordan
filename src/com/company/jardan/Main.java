@@ -194,25 +194,46 @@ public class Main {
         }
         for (int i = 0; i < inputArray.length; i++){
             if (inputArray[i][0] != 0.0) {
-                res[i] += inputArray[i][0] + " +";
+                res[i] += inputArray[i][0] ;
             }
         }
-
+        int count = 0;
         for (int i = 1; i < resultArray.length; i++){
-            for (int j = 2; j < resultArray[i].length -1 ; j++){
+            if (resultArray[i][0].contains("x")) {
+                count++;
+            }
+        }
+        int temp = 0;
+        for (int i = 1; i < resultArray.length; i++){
+            for (int j = 2; j < resultArray[i].length; j++){
                 if (!resultArray[0][j].equals("  0")) {
                     if (inputArray[i-1][j-1] == 1.0) {
                         res[i-1] += resultArray[0][j];
                     }
-                    if (inputArray[i-1][j-1] < 0) {
+                    if (inputArray[i-1][j-1] == -1.0 && inputArray[i-1][0] == 0.0 && temp < count - 2) {
+                        res[i-1] += "x" + (j-1);
+                        temp++;
+                    }
+                    if (inputArray[i-1][j-1] == -1.0 && inputArray[i-1][0] != 0.0 && temp < count - 2) {
+                        res[i-1] += " + x" + (j-1);
+                        temp++;
+                    }
+                    if (inputArray[i-1][j-1] == -1.0) {
+                        res[i-1] += " + x" + (j-1);
+                    }
+                    if (inputArray[i-1][j-1] < 0.0 && inputArray[i-1][j-1] != -1.0 && inputArray[i-1][j-1] != 1.0) {
                         inputArray[i-1][j-1] *= -1;
-                        res[i-1] += inputArray[i-1][j-1] + "x" + (j-2);
+                        res[i-1] += inputArray[i-1][j-1] + "x" + (j-1);
+                    }
+                    if (inputArray[i-1][j-1] > 1.0 && inputArray[i-1][j-1] != -1.0 && inputArray[i-1][j-1] != 1.0) {
+                        res[i-1] += "  -" + inputArray[i-1][j-1] + "x" + (j-1);
                     }
                 }
             }
         }
-
-        System.out.print(Arrays.toString(res));
-
+        for (int i = 0; i < resultArray.length; i++){
+                System.out.println(res[i]);
+        }
     }
+
 }

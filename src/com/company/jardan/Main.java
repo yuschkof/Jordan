@@ -6,11 +6,7 @@ import java.util.Scanner;
 public class Main {
     public static double[][] inputArray;
     public static String[][] resultArray;
-<<<<<<< HEAD
     private static void outputMatrix(double[][] inputArray) {
-=======
-    private static void outputMatr(double[][] inputArray) {
->>>>>>> 49a32098bdca610fb8e185385f6fb859d2b707a4
         for (int i = 1; i < resultArray.length; i++){
             for (int j = 1; j < resultArray[i].length; j++){
                 if (inputArray[i-1][j-1] < 10.0 && inputArray[i-1][j-1] > 0.0) {
@@ -33,9 +29,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-<<<<<<< HEAD
         Scanner number = new Scanner(System.in);
-        System.out.println("??????? ?????? ???????");
+        System.out.println("Введите размер матрицы");
         int a = number.nextInt();
         int b = number.nextInt();
         CreateMatrix(a, b);
@@ -43,39 +38,14 @@ public class Main {
         String answer;
         boolean temp = true;
         while (temp) {
-            System.out.println("?????????? ??????????? y=??, f=?????????");
-            answer = number.next();
-            if (Objects.equals(answer, "y")) {
-                SecondChange();
-                if (Objects.equals(resultArray[1][0], " 0") && inputArray[0][0] == 1.0) {
-                    System.out.println("??? ???????");
-                    temp = false;
-                }
-=======
-    Scanner number = new Scanner(System.in);
-    System.out.println("Введите размер матрицы");
-    int a = number.nextInt();
-    int b = number.nextInt();
-	CreateMatrix(a, b);
-    SecondChange();
-    String answer;
-    boolean temp = true;
-        while (temp) {
             System.out.println("Продолжить вычисления? y=Да, f=Результат");
             answer = number.next();
             if (Objects.equals(answer, "y")) {
                 SecondChange();
-//                if (inputArray[0][0] == 1) {
-//                    for (int i = 1; i < resultArray.length; i++){
-//                        for (int j = 1; j < resultArray[i].length; j++){
-//                            if (resultArray[i][0].equals(" 0")) {
-//
-//                            }
-//                        }
-//                    }
-//                    temp = false;
-//                }
->>>>>>> 49a32098bdca610fb8e185385f6fb859d2b707a4
+                if (Objects.equals(resultArray[1][0], " 0") && inputArray[0][0] == 1.0) {
+                    System.out.println("Нет решений");
+                    temp = false;
+                }
             } else {
                 Result();
                 temp = false;
@@ -88,11 +58,7 @@ public class Main {
         resultArray[0][b+1] = "  0";
         resultArray[a+1][0] = "x" + b;
 
-<<<<<<< HEAD
         outputMatrix(inputArray);
-=======
-        outputMatr(inputArray);
->>>>>>> 49a32098bdca610fb8e185385f6fb859d2b707a4
         for (int i = 1; i < resultArray.length; i++){
             for (int j = 1; j < resultArray[i].length; j++){
                 resultArray[i][b+1] = "  0";
@@ -115,7 +81,7 @@ public class Main {
 
         for (int i = 0; i < inputArray.length; i++){
             for (int j = 0; j < inputArray[i].length; j++){
-                System.out.println("??????? ???????? ??? i: " + i + ", ? j: " + j);
+                System.out.println("Введите значения для i: " + i + ", и j: " + j);
                 inputArray[i][j]= number.nextDouble();
             }
         }
@@ -135,27 +101,18 @@ public class Main {
             }
         }
 
-<<<<<<< HEAD
         outputMatrix(inputArray);
-=======
-        outputMatr(inputArray);
->>>>>>> 49a32098bdca610fb8e185385f6fb859d2b707a4
         Arrays.stream(resultArray).map(Arrays::toString).forEach(System.out::println);
 
     }
-
     static void SecondChange() {
         Scanner number = new Scanner(System.in);
-        System.out.println("???????? ?????????? ???????????? ????????");
+        System.out.println("Выберете координаты разрешаюшего элемента");
         int xAks = number.nextInt();
         int yAks = number.nextInt();
         double aks = inputArray[xAks][yAks];
 
-<<<<<<< HEAD
-        System.out.println("??????????? ???????: " + aks);
-=======
         System.out.println("Разрешаюший элемент: " + aks);
->>>>>>> 49a32098bdca610fb8e185385f6fb859d2b707a4
         for (int i = 0; i < inputArray.length; i++) {
             for (int j = 0; j < inputArray[i].length; j++) {
                 if (i != xAks && j != yAks) {
@@ -194,7 +151,6 @@ public class Main {
         System.out.println("Second Matrix: ");
         printMatrix(inputArray, xAks, yAks);
     }
-
     static void Result() {
         for (int i = 1; i < resultArray.length; i++){
             for (int j = 1; j < resultArray[i].length; j++){
@@ -235,64 +191,12 @@ public class Main {
                     break;
                 }
 
-<<<<<<< HEAD
             }
         }
-=======
-//        if (inputArray[0][0] == 1.0) {
-//            System.out.println("Нет решений");
-//            printMatrix(inputArray, xAks, yAks);
-//        } else {
-            System.out.println("Second Matrix: ");
-            printMatrix(inputArray, xAks, yAks);
-//        }
-    }
-
-    static void Result() {
-        for (int i = 1; i < resultArray.length; i++){
-            for (int j = 1; j < resultArray[i].length; j++){
-                if (inputArray[i-1][j-1] < 10.0 && inputArray[i-1][j-1] > 0.0) {
-                    resultArray[i][j] = "" + inputArray[i - 1][j - 1];
-                }
-                if (inputArray[i-1][j-1] >= 10.0) {
-                    resultArray[i][j] = "" + inputArray[i - 1][j - 1];
-                }
-                if (inputArray[i-1][j-1] < 0.0 && inputArray[i-1][j-1] > -10.0) {
-                    resultArray[i][j] = "" + inputArray[i - 1][j - 1];
-                }
-                if (inputArray[i-1][j-1] <= -10.0) {
-                    resultArray[i][j] = String.valueOf(inputArray[i-1][j-1]);
-                }
-                if (inputArray[i-1][j-1] == 0.0) {
-                    resultArray[i][j] = "" + inputArray[i - 1][j - 1];
-                }
-            }
-        }
-        String[] res = new String[resultArray.length];
-
-        for (int i = 1; i < resultArray.length; i++){
-            for (int j = 0; j < resultArray[i].length; j++){
-                res[i-1] = resultArray[i][0] + " = ";
-            }
-        }
-        for (int i = 0; i < inputArray.length; i++){
-            if (inputArray[i][0] != 0.0) {
-                res[i] += inputArray[i][0] ;
-            }
-        }
-        int count = 0;
-        for (int i = 1; i < resultArray.length; i++){
-            if (resultArray[i][0].contains("x")) {
-                count++;
-            }
-        }
-        int temp = 0;
->>>>>>> 49a32098bdca610fb8e185385f6fb859d2b707a4
         for (int i = 1; i < resultArray.length; i++){
             for (int j = 2; j < resultArray[i].length; j++){
                 if (!resultArray[0][j].equals("  0")) {
                     if (inputArray[i-1][j-1] == 1.0) {
-<<<<<<< HEAD
                         res[i-1] += " - x" + (j-1);
                     }
                     if (inputArray[i-1][j-1] == -1.0 && inputArray[i-1][0] == 0.0 && Objects.equals(resultArray[0][j], "  -x" + firstX)) {
@@ -302,19 +206,6 @@ public class Main {
                         res[i-1] += " + x" + (j-1);
                     }
                     if (inputArray[i-1][j-1] == -1.0 && !Objects.equals(resultArray[0][j], "  -x" + firstX)) {
-=======
-                        res[i-1] += resultArray[0][j];
-                    }
-                    if (inputArray[i-1][j-1] == -1.0 && inputArray[i-1][0] == 0.0 && temp < count - 2) {
-                        res[i-1] += "x" + (j-1);
-                        temp++;
-                    }
-                    if (inputArray[i-1][j-1] == -1.0 && inputArray[i-1][0] != 0.0 && temp < count - 2) {
-                        res[i-1] += " + x" + (j-1);
-                        temp++;
-                    }
-                    if (inputArray[i-1][j-1] == -1.0) {
->>>>>>> 49a32098bdca610fb8e185385f6fb859d2b707a4
                         res[i-1] += " + x" + (j-1);
                     }
                     if (inputArray[i-1][j-1] < 0.0 && inputArray[i-1][j-1] != -1.0 && inputArray[i-1][j-1] != 1.0) {
@@ -322,21 +213,13 @@ public class Main {
                         res[i-1] += inputArray[i-1][j-1] + "x" + (j-1);
                     }
                     if (inputArray[i-1][j-1] > 1.0 && inputArray[i-1][j-1] != -1.0 && inputArray[i-1][j-1] != 1.0) {
-<<<<<<< HEAD
                         res[i-1] += " - " + inputArray[i-1][j-1] + "x" + (j-1);
-=======
-                        res[i-1] += "  -" + inputArray[i-1][j-1] + "x" + (j-1);
->>>>>>> 49a32098bdca610fb8e185385f6fb859d2b707a4
                     }
                 }
             }
         }
         for (int i = 0; i < resultArray.length; i++){
-<<<<<<< HEAD
             System.out.println(res[i]);
-=======
-                System.out.println(res[i]);
->>>>>>> 49a32098bdca610fb8e185385f6fb859d2b707a4
         }
     }
 
